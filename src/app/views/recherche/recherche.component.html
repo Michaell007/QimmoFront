@@ -1,0 +1,169 @@
+<!-- loader -->
+<app-loader></app-loader>
+
+<!-- title header -->
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Recherche </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- content search -->
+<div class="properties-area recent-property" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3 p0 padding-top-40">
+                <div class="blog-asside-right pr0">
+                    <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Recherche </h3>
+                        </div>
+
+                        <!-- module search inline -->
+                        <div class="panel-body search-widget">
+                            <form [formGroup]="formSearch" (ngSubmit)="submitForm()" class=" form-inline">
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <input type="text" formControlName="keyword" class="form-control"
+                                                placeholder="Mot clé">
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <select id="lunchBegins" formControlName="localite" class="selectpicker"
+                                                data-live-search="true" data-live-search-style="begins"
+                                                title="Localité">
+                                                <option value="Yopougon">Yopougon</option>
+                                                <option value="Cocody">Cocody</option>
+                                                <option value="Marcory">Marcory</option>
+                                                <option value="Abobo">Abobo</option>
+                                                <option value="Treichville">Treichville</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select id="basic" formControlName="type"
+                                                class="selectpicker show-tick form-control" title="Type">
+                                                <option value="Location">Location </option>
+                                                <option value="Vente">Vente</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="padding-5">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <label for="price-range">Prix (Fcfa):</label>
+                                            <input class="form-control" formControlName="price" type="number"
+                                                placeholder="prix ..."><br />
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label for="price-range">Surface (m2):</label>
+                                            <input class="form-control" formControlName="surface" type="number"
+                                                placeholder="surface ..."><br />
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="padding-5">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <label for="price-range">Chambre:</label>
+                                            <input class="form-control" formControlName="chambre" type="number"
+                                                placeholder="chambre ..."><br />
+                                        </div>
+
+                                        <div class="col-xs-6">
+                                            <label for="price-range">Douche:</label>
+                                            <input class="form-control" formControlName="douche" type="number"
+                                                placeholder="douche ..."><br />
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <input class="button btn largesearch-btn" value="Recherche" type="submit">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9  pr0 padding-top-40 properties-page">
+                <div class="col-md-12 clear">
+                    <div class="col-xs-10 page-subheader sorting pl0"></div>
+                    <div class="col-xs-2 layout-switcher">
+                        <a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i> </a>
+                        <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
+                    </div><!--/ .layout-switcher-->
+                </div>
+
+                <div class="col-md-12 clear">
+                    <div id="list-type" class="proerty-th">
+
+                        <!-- show card -->
+                        <div *ngFor="let annonce of annonces" class="col-sm-6 col-md-4 p0">
+                            <div class="box-two proerty-item">
+                                <div class="item-thumb">
+                                    <a [target]="!annonce.isForOwnerSite ? '_blank': '_self'" href="{{annonce.isForOwnerSite ? '/annonce/123': annonce.linkUrl }}">
+                                        <img class="img-annonce" src="{{annonce.isForOwnerSite ? 'assets/img/demo/property-1.png': (annonce.images[0].url == 'property.png') ? 'assets/img/demo/property.png' : annonce.images[0].url }}">
+                                    </a>
+                                    <span> <b style="color: brown;">{{ annonce.typeAnnonce.libelle }}</b> - {{ annonce.lieu != null ? annonce.lieu : ' - '  }}</span>
+                                </div>
+                        
+                                <div class="item-entry overflow">
+                                    <h5>
+                                        <a [target]="!annonce.isForOwnerSite ? '_blank': '_self'" href="{{annonce.isForOwnerSite ? '/annonce/123': annonce.linkUrl }}"> {{ annonce.title.length > 23 ? (annonce.title| slice:0:22) + '...' : annonce.title }} </a></h5>
+                                    <div class="dot-hr"></div>
+                                    <span class="pull-left">
+                                        <b>Surface :</b> {{ annonce.dimension != null ? annonce.dimension+'m' : '-'  }} 
+                                    </span>
+                                    <span class="proerty-price pull-right">
+                                        {{ annonce.montant != null ? (annonce.montant | number) : ' - ' }} Fcfa
+                                    </span>
+                        
+                                    <p style="display: none;"></p>
+                                    <div class="property-icon">
+                                        <img src="assets/img/icon/bed.png"> {{ annonce.nbLit != null ? (annonce.nbLit | number) : ' - ' }} |
+                                        <img src="assets/img/icon/shawer.png"> {{ annonce.nbDouche != null ? (annonce.nbDouche | number) : ' - ' }} |
+                                        <img src="assets/img/icon/room.png"> {{ annonce.dimension != null ? annonce.dimension : ' - '  }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div *ngIf="maxPages > 1" class="col-md-12">
+                    <div class="pull-right">
+                        <div class="pagination">
+                            <ul>
+                                <li><a href="#">Prev</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

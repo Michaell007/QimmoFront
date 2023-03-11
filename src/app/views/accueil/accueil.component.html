@@ -1,0 +1,110 @@
+
+<!-- Slider-area -->
+<div class="slider-area">
+    <div class="slider">
+        <div id="bg-slider" class="owl-carousel owl-theme">
+            <div class="item"><img src="assets/img/slide1/slider-image-10.jpg" alt="GTA V"></div>
+            <div class="item"><img src="assets/img/slide1/slider-image-11.jpg" alt="GTA V"></div>
+            <div class="item"><img src="assets/img/slide1/slider-image-12.jpg" alt="GTA V"></div>
+        </div>
+    </div>
+    <div class="slider-content">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+                <h2>Trouver votre futur logement</h2>
+                <p>Securise, Fiable, Rapide ...</p>
+                <div class="search-form wow pulse" data-wow-delay="0.8s">
+
+                    <!-- Form module -->
+                    <form [formGroup]="formSearch" (ngSubmit)="submitForm()" class=" form-inline">
+                        <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>
+                        <div class="form-group">
+                            <input type="text" formControlName="keyword" class="form-control" placeholder="Entrer un mot clé">
+                        </div>
+                        <!-- select localite -->
+                        <div class="form-group">
+                            <select id="lunchBegins" formControlName="localite" class="selectpicker" data-live-search="true"
+                                data-live-search-style="begins" title="Selectionner une localité">
+                                <option value="Yopougon">Yopougon</option>
+                                <option value="Cocody">Cocody</option>
+                                <option value="Marcory">Marcory</option>
+                                <option value="Abobo">Abobo</option>
+                                <option value="Treichville">Treichville</option>
+                            </select>
+                        </div>
+                        <!-- select tyoe -->
+                        <div class="form-group">
+                            <select id="basic" formControlName="type" class="selectpicker show-tick form-control" title="Selectionner le type">
+                                <option value="Location">Location </option>
+                                <option value="Vente">Vente</option>
+                            </select>
+                        </div>
+                        <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
+
+                        <div style="display: none;" class="search-toggle">
+                            <div class="search-row">
+                                <div class="form-group mar-r-20">
+                                    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+                                </div>
+
+                                <div class="form-group mar-r-20">
+                                    <ngx-slider [(value)]="minValue2" [(highValue)]="maxValue2" [options]="options2"></ngx-slider>
+                                </div>
+                            </div>
+
+                            <div class="search-row">
+                                <div class="form-group mar-r-20">
+                                    <ngx-slider [(value)]="minValue3" [(highValue)]="maxValue3" [options]="options3"></ngx-slider>
+                                </div>
+
+                                <div class="form-group mar-r-20">
+                                    <ngx-slider [(value)]="minValue4" [(highValue)]="maxValue4" [options]="options4"></ngx-slider>
+                                </div>
+
+                                <!-- <div class="form-group mar-r-20">
+                                    <label for="price-range">Douches Min :</label>
+                                    <input type="text" class="span2" value="" data-slider-min="1" data-slider-max="50"
+                                        data-slider-step="1" data-slider-value="[1,2]" id="min-baths"><br />
+                                    <b class="pull-left color">1</b>
+                                    <b class="pull-right color">50</b>
+                                </div> -->
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- property title -->
+<div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                <!-- /.feature title -->
+                <h2>Annonces récentes</h2>
+                <p>Trouver des annonces tous les jours , a tout moment correspondant a vos criteres de recherche. </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- property area -->
+<div class="content-area recent-property" style="padding-bottom: 60px; background-color: rgb(252, 252, 252);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12  padding-top-40 properties-page">
+                <div class="col-md-12 ">
+                    <div id="list-type" class="proerty-th">
+                        <!-- component card -->
+                        <ng-container *ngFor="let item of annonces">
+                            <app-card [annonce]="item" ></app-card>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
