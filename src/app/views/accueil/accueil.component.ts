@@ -16,7 +16,6 @@ export class AccueilComponent implements OnInit {
   surface = 0;
   douche = 0;
   chambre = 0;
-
   
   // Option prix
   minValue: number = 25000;
@@ -97,7 +96,6 @@ export class AccueilComponent implements OnInit {
   constructor(private svcApi: RestApiService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-
     // pi get annonce
     this.svcApi.getLatestAnnonces().subscribe(
       (response: any) => {

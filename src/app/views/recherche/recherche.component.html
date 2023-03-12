@@ -1,5 +1,8 @@
-<!-- loader -->
-<app-loader></app-loader>
+<!-- header -->
+<app-header></app-header>   
+
+<!-- navigation -->
+<app-navigation></app-navigation>
 
 <!-- title header -->
 <div class="page-head">
@@ -39,7 +42,7 @@
                                 <fieldset>
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <select id="lunchBegins" formControlName="localite" class="selectpicker"
+                                            <select formControlName="localite" class="selectpicker"
                                                 data-live-search="true" data-live-search-style="begins"
                                                 title="Localité">
                                                 <option value="Yopougon">Yopougon</option>
@@ -50,8 +53,7 @@
                                             </select>
                                         </div>
                                         <div class="col-xs-6">
-                                            <select id="basic" formControlName="type"
-                                                class="selectpicker show-tick form-control" title="Type">
+                                            <select formControlName="type" class="selectpicker form-control" title="Type">
                                                 <option value="Location">Location </option>
                                                 <option value="Vente">Vente</option>
                                             </select>
@@ -114,7 +116,17 @@
 
                 <div class="col-md-12 clear">
                     <div id="list-type" class="proerty-th">
-
+                        <!-- annonces resultat vide -->
+                        <ng-container *ngIf="annonces.length == 0">
+                            <div class="profiel-header">
+                                <hr>
+                                <h3> RESULTATS DE RECHERCHE <br>
+                                    <small>Aucun résultat.</small>
+                                </h3>
+                                <hr>
+                            </div>
+                        </ng-container>
+                        
                         <!-- show card -->
                         <div *ngFor="let annonce of annonces" class="col-sm-6 col-md-4 p0">
                             <div class="box-two proerty-item">
@@ -145,7 +157,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -153,12 +164,11 @@
                     <div class="pull-right">
                         <div class="pagination">
                             <ul>
-                                <li><a href="#">Prev</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next</a></li>
+                                <li><a (click)="prevPage()">Precedent</a></li>
+                                <li *ngFor="let item of [].constructor(maxPages); let i = index">
+                                    <a (click)="changePage(i+1)" >{{i+1}}</a>
+                                </li>
+                                <li><a (click)="nextPage()">Suivant</a></li>
                             </ul>
                         </div>
                     </div>
@@ -167,3 +177,6 @@
         </div>
     </div>
 </div>
+
+<!-- Footer area-->
+<app-footer></app-footer>

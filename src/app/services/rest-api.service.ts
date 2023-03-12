@@ -38,9 +38,12 @@ export class RestApiService {
     return this.http.get(`${this.apiURL}annonce/latest`);
   }
 
-  getSearchAnnonces(data: any) : Observable<any> {
-    return this.http.post(`${this.apiURL}annonces/search`, data);
+  getSearchAnnonces(data: any, page = 1) : Observable<any> {
+    return this.http.post(`${this.apiURL}annonces/search/${page}`, data);
   }
 
+  getAllAnnonces(page = 1) : Observable<any> {
+    return this.http.get(`${this.apiURL}annonces/all/${page}`);
+  }
 
 }
