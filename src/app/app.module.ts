@@ -18,6 +18,8 @@ import { RechercheComponent } from './views/recherche/recherche.component';
 import { PageIntrouvableComponent } from './views/page-introuvable/page-introuvable.component';
 import { EnregistrerComponent } from './views/enregistrer/enregistrer.component';
 import { AccountComponent } from './views/account/account.component';
+import { LoginComponent } from './views/login/login.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AccountComponent } from './views/account/account.component';
     RechercheComponent,
     PageIntrouvableComponent,
     EnregistrerComponent,
-    AccountComponent
+    AccountComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

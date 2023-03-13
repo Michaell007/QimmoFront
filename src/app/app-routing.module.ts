@@ -4,6 +4,7 @@ import { IndexComponent } from './layouts/index/index.component';
 import { AccountComponent } from './views/account/account.component';
 import { AccueilComponent } from './views/accueil/accueil.component';
 import { EnregistrerComponent } from './views/enregistrer/enregistrer.component';
+import { LoginComponent } from './views/login/login.component';
 import { PageIntrouvableComponent } from './views/page-introuvable/page-introuvable.component';
 import { RechercheComponent } from './views/recherche/recherche.component';
 
@@ -12,7 +13,6 @@ const options: ExtraOptions = {
 }
 
 const routes: Routes = [
-
   {
     path: 'accueil', component: AccueilComponent
   },
@@ -21,6 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'nouveau-compte', component: EnregistrerComponent
+  },
+  {
+    path: 'login', component: LoginComponent
   },
   {
     path: 'account', component: AccountComponent

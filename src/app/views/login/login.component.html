@@ -1,0 +1,67 @@
+<!-- header -->
+<app-header></app-header>
+
+<!-- navigation -->
+<app-navigation></app-navigation>
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Me connecter</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- content -->
+<div class="register-area" style="background-color: rgb(249, 249, 249);">
+    <div class="container">
+
+        <div class="col-md-6 col-md-offset-3">
+
+            <!-- notification -->
+            <div *ngIf="isLoginError" class="alert alert-danger" role="alert">
+                Mot de passe ou email incorrect.
+            </div>
+
+            <div class="box-for overflow">
+                <div class="col-md-12 col-xs-12 register-blocks">
+                    <h2>Authentification </h2>
+                    <form [formGroup]="formLogin" #ngForm="ngForm" (ngSubmit)="submitForm()">
+
+                        <!-- field email -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="username">Email *</label>
+                                    <input formControlName="username" type="email" class="form-control">
+                                    <div *ngIf="formLogin.controls['username'].errors && (ngForm.submitted  || formLogin.touched)" class="text-danger">
+                                        Champs incorrect.
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="email">Mot de passe *</label>
+                                    <input formControlName="password" type="password" class="form-control">
+                                    <div *ngIf="formLogin.controls['password'].errors && (ngForm.submitted  || formLogin.touched)" class="text-danger">
+                                        Champs incorrect.
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary"> Se connecter</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer area-->
+<app-footer></app-footer>

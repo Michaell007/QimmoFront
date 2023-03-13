@@ -1,11 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RestApiService {
+export class AuthnService {
 
   apiURL = 'http://localhost:8000/';
 
@@ -34,24 +34,24 @@ export class RestApiService {
 
   constructor(private http: HttpClient) { }
 
-  getLatestAnnonces() : Observable<any> {
-    return this.http.get(`${this.apiURL}annonce/latest`);
+  postLogin(data: any) : Observable<any> {
+    return this.http.post(`${this.apiURL}api/login_check`, data);
   }
 
-  getSearchAnnonces(data: any, page = 1) : Observable<any> {
-    return this.http.post(`${this.apiURL}annonces/search/${page}`, data);
+  setLocalStorage(name: string, value: any) {
+    localStorage.setItem(name, value);
   }
 
-  getAllAnnonces(page = 1) : Observable<any> {
-    return this.http.get(`${this.apiURL}annonces/all/${page}`);
+  getLocalStorage(name: string) {
+    return JSON.parse(localStorage.getItem(name)!); 
   }
 
-  createSouscripteur(data: any) : Observable<any> {
-    return this.http.post(`${this.apiURL}souscripteur/create`, data);
+  deleteLocalStorage(name: string) {
+    localStorage.removeItem(name);
   }
 
-  createUser(data: any) : Observable<any> {
-    return this.http.post(`${this.apiURL}user/create`, data);
+  viderLocalStorage(name: string) {
+    localStorage.clear();
   }
 
 }
