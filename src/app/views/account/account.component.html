@@ -1,0 +1,110 @@
+<!-- header -->
+<app-header></app-header>
+
+<!-- navigation -->
+<app-navigation></app-navigation>
+
+<!-- content -->
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Créer un compte</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End page header -->
+
+<!-- property area -->
+<div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
+    <div class="container">
+
+        <!-- notifications -->
+        <div *ngIf="isOk == 1" class="alert alert-success" role="alert">
+            Votre compte a été créé avec succès.
+        </div>
+        <div *ngIf="isOk == 0" class="alert alert-danger" role="alert">
+            Cette adresse e-mail est déjà utilisée.
+        </div>
+
+        <div class="col-md-8 col-lg-offset-2">
+            <div class="" id="contact1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3><i class="fa fa-info"></i> Créer votre compte</h3>
+                        <p>
+                            publier des annonces accessible à tous
+                            <strong>Partenaires, clients, visiteurs ...</strong>
+                        </p>
+                    </div>
+                    <!-- /.col-sm-4 -->
+                </div>
+                <!-- /.row -->
+
+                <hr>
+                <form [formGroup]="formAccount" #ngForm="ngForm" (ngSubmit)="submitForm()">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="firstname">Nom *</label>
+                                <input formControlName="nom" type="text" class="form-control" id="firstname">
+                                <div *ngIf="formAccount.controls['nom'].errors && (ngForm.submitted  || formAccount.touched)" class="text-danger">
+                                    Champs incorrect.
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="lastname">Prénom *</label>
+                                <input formControlName="prenom" type="text" class="form-control" id="lastname">
+                                <div *ngIf="formAccount.controls['prenom'].errors && (ngForm.submitted  || formAccount.touched)" class="text-danger">
+                                    Champs incorrect.
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input formControlName="email" type="email" class="form-control" id="email">
+                                <div *ngIf="formAccount.controls['email'].errors && (ngForm.submitted  || formAccount.touched)" class="text-danger">
+                                    Champs incorrect.
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Mot de passe * </label>
+                                <input formControlName="password" type="password" class="form-control">
+                                <div *ngIf="formAccount.controls['password'].errors && (ngForm.submitted  || formAccount.touched)" class="text-danger">
+                                    Champs incorrect.
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Répéter mot de passe *</label>
+                                <input formControlName="repeatpwd" type="password" class="form-control">
+                                <div *ngIf="formAccount.controls['repeatpwd'].errors && (ngForm.submitted  || formAccount.touched)" class="text-danger">
+                                    Champs incorrect.
+                                </div> 
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-ok"></i> Valider
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </form>
+            </div>
+        </div>
+        <!-- /.col-md-9 -->
+
+    </div>
+</div>
+
+<!-- Footer area-->
+<app-footer></app-footer>

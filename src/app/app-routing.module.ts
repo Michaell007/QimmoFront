@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, ExtraOptions  } from '@angular/router';
 import { IndexComponent } from './layouts/index/index.component';
+import { AccountComponent } from './views/account/account.component';
 import { AccueilComponent } from './views/accueil/accueil.component';
 import { EnregistrerComponent } from './views/enregistrer/enregistrer.component';
 import { PageIntrouvableComponent } from './views/page-introuvable/page-introuvable.component';
@@ -20,6 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'nouveau-compte', component: EnregistrerComponent
+  },
+  {
+    path: 'account', component: AccountComponent
   },
   { path: "", redirectTo: "accueil", pathMatch: "full" },
   { path: '**', pathMatch: 'full',  component: PageIntrouvableComponent },

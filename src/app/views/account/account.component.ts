@@ -1,33 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, ValidatorFn, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { RestApiService } from 'src/app/services/rest-api.service';
 
 @Component({
-  selector: 'app-enregistrer',
-  templateUrl: './enregistrer.component.html',
-  styleUrls: ['./enregistrer.component.css']
+  selector: 'app-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.css']
 })
-export class EnregistrerComponent implements OnInit {
-  formRegister!: FormGroup;
+export class AccountComponent implements OnInit {
+  formAccount!: FormGroup;
   // notification empty
   isOk = -1;
 
-  constructor(private svcApi: RestApiService, private fb: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private svcApi: RestApiService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
     // Init form
-    this.formRegister = this.fb.group({
-      nom: [''],
-      prenom: [''],
+    this.formAccount = this.fb.group({
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required],
       email: ['', [Validators.email, Validators.required] ],
-      type: ['', Validators.required],
-      price: [25000, [Validators.required, Validators.min(25000)] ],
-      surface: [4, [Validators.required, Validators.min(4)] ],
-      douche: [1, [Validators.required, Validators.min(1)] ],
-      chambre: [1, [Validators.required, Validators.min(1)] ],
-    });
+      password: ['', Validators.required],
+      repeatpwd: ['', Validators.required],
+    } ,{ validators: this.checkPasswords });
   }
 
   checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
@@ -38,14 +34,14 @@ export class EnregistrerComponent implements OnInit {
 
   submitForm() {
     
-    if (this.formRegister.valid) {
+    if (this.formAccount.valid) {
       // request create
-      this.svcApi.createSouscripteur(this.formRegister.value).subscribe(
+      this.svcApi.createUser(this.formAccount.value).subscribe(
         (response: any) => {
           // if created = 1 or If error error = 0
           this.isOk = response.code == 200 ? 1 : 0;
           if (this.isOk) {
-            this.formRegister.reset(); // form.reset();
+            this.formAccount.reset(); // form.reset();
           }
         },
         error => console.log(`Error ${error}`)

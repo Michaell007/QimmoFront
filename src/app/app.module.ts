@@ -17,6 +17,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { RechercheComponent } from './views/recherche/recherche.component';
 import { PageIntrouvableComponent } from './views/page-introuvable/page-introuvable.component';
 import { EnregistrerComponent } from './views/enregistrer/enregistrer.component';
+import { AccountComponent } from './views/account/account.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EnregistrerComponent } from './views/enregistrer/enregistrer.component'
     CardComponent,
     RechercheComponent,
     PageIntrouvableComponent,
-    EnregistrerComponent
+    EnregistrerComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
