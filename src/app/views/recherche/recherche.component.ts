@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, Validators } from '@angular/forms';
-import { Options, LabelType } from "@angular-slider/ngx-slider";
 import { RestApiService } from 'src/app/services/rest-api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recherche',
@@ -16,7 +16,7 @@ export class RechercheComponent implements OnInit {
   maxPages = 0;
   page = 1;
 
-  constructor(private svcApi: RestApiService, private fb: FormBuilder) { }
+  constructor(private svcApi: RestApiService, private fb: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -31,8 +31,21 @@ export class RechercheComponent implements OnInit {
       chambre: [''],
     });
 
-    // init data
-    // call api search
+    // if go from home page
+    let gotoHome = this.route.snapshot.queryParams['keyword'] ?? false;
+    if ( !(typeof gotoHome == "boolean") ) {
+      this.formSearch.controls["keyword"].setValue( this.route.snapshot.queryParams['keyword'] );
+      this.formSearch.controls["localite"].setValue( this.route.snapshot.queryParams['localite'] );
+      this.formSearch.controls["type"].setValue( this.route.snapshot.queryParams['type'] );
+      this.formSearch.controls["price"].setValue( this.route.snapshot.queryParams['price'] );
+      this.formSearch.controls["surface"].setValue( this.route.snapshot.queryParams['surface'] );
+      this.formSearch.controls["douche"].setValue( this.route.snapshot.queryParams['douche'] );
+      this.formSearch.controls["chambre"].setValue( this.route.snapshot.queryParams['chambre'] );
+      // submit form
+      this.submitForm();
+    }
+
+    // init data // call api search
     this.svcApi.getAllAnnonces(this.page).subscribe(
       (response: any) => {
         this.annonces = response.data;
@@ -90,7 +103,7 @@ export class RechercheComponent implements OnInit {
       return;
     }
 
-    this.svcApi.getSearchAnnonces(this.dataSearch, this.page = 1).subscribe(
+    this.svcApi.getSearchAnnonces(this.dataSearch, this.page).subscribe(
       (response: any) => {
         this.annonces = response.data;
         this.maxPages = response.maxPages;
@@ -101,7 +114,7 @@ export class RechercheComponent implements OnInit {
   }
 
   nextPage() {
-    
+
     this.page++;
     if (this.page > this.maxPages) {
       this.page = 1;
@@ -112,7 +125,7 @@ export class RechercheComponent implements OnInit {
   }
 
   prevPage() {
-    
+
     this.page--;
     if (this.page <= 0) {
       this.page = 1;

@@ -1,0 +1,162 @@
+<!-- header -->
+<app-header></app-header>
+
+<!-- navigation -->
+<app-navigation></app-navigation>
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Me tenir informé(e)</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- content -->
+<div class="register-area" style="background-color: rgb(249, 249, 249);">
+    <div class="container">
+
+        <div *ngIf="isOk == 1" class="alert alert-success" role="alert">
+            Votre compte a été créé avec succès.
+        </div>
+
+        <div *ngIf="isOk == 0" class="alert alert-danger" role="alert">
+            Cette adresse e-mail est déjà utilisée
+        </div>
+
+        <div class="col-md-6">
+            <div class="box-for overflow">
+                <div class="col-md-12 col-xs-12 register-blocks">
+                    <h2>Nouveau compte </h2>
+                    <form [formGroup]="formRegister" #ngForm="ngForm" (ngSubmit)="submitForm()">
+                        <!-- fields nom et prenom -->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nom">Nom </label>
+                                    <input formControlName="nom" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="prenom">Prenom</label>
+                                    <input formControlName="prenom" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- field email -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input formControlName="email" type="email" class="form-control">
+                                    <div *ngIf="formRegister.controls['email'].errors && (ngForm.submitted  || formRegister.touched)" class="text-danger">
+                                        Champs incorrect.
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- password fields -->
+                        <!-- <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Mot de passe * </label>
+                                    <input formControlName="password" type="password" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Répéter mot de passe *</label>
+                                    <input formControlName="repeatpwd" type="password" class="form-control">
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- description criteres -->
+                        <h3> <small>Veuillez préciser vos critères de recherche.</small> </h3>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Type d'annonce *</label>
+                                    <select formControlName="type" class="form-control" id="exampleFormControlSelect1">
+                                      <option value="Location">Location</option>
+                                      <option value="Vente">Vente</option>
+                                    </select>
+                                    <div *ngIf="formRegister.controls['type'].errors && (ngForm.submitted  || formRegister.touched)" class="text-danger">
+                                        Champs incorrect.
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Prix (Fcfa) *</label>
+                                    <input formControlName="price" type="number" class="form-control">
+                                    <div *ngIf="formRegister.controls['price'].errors && (ngForm.submitted  || formRegister.touched)" class="text-danger">
+                                        Champs incorrect.
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Surface (m2) *</label>
+                                    <input formControlName="surface" type="number" class="form-control">
+                                    <div *ngIf="formRegister.controls['surface'].errors && (ngForm.submitted  || formRegister.touched)" class="text-danger">
+                                        Champs incorrect.
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nombre maximal de chambres *</label>
+                                    <input min="1" formControlName="chambre" type="number" class="form-control">
+                                    <div *ngIf="formRegister.controls['chambre'].errors && (ngForm.submitted  || formRegister.touched)" class="text-danger">
+                                        Champs incorrect.
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nombre maximal de douches *</label>
+                                    <input min="1" formControlName="douche" type="number" class="form-control">
+                                    <div *ngIf="formRegister.controls['douche'].errors && (ngForm.submitted  || formRegister.touched)" class="text-danger">
+                                        Champs incorrect.
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary"> Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="box-for overflow">                         
+                <div class="col-md-12 col-xs-12 login-blocks">
+                    <h3><i class="fa fa-info"></i> Recevez des alertes.</h3>
+                    <p class="text-muted">
+                        Inscrivez-vous et précisez vos critères de recherche.<br>
+                        Recevez des alertes lorsque du contenu susceptible de vous intéresser est publié.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer area-->
+<app-footer></app-footer>

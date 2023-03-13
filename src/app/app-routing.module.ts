@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, ExtraOptions  } from '@angular/router';
 import { IndexComponent } from './layouts/index/index.component';
 import { AccueilComponent } from './views/accueil/accueil.component';
+import { EnregistrerComponent } from './views/enregistrer/enregistrer.component';
+import { PageIntrouvableComponent } from './views/page-introuvable/page-introuvable.component';
 import { RechercheComponent } from './views/recherche/recherche.component';
 
 const options: ExtraOptions = {
@@ -17,8 +19,10 @@ const routes: Routes = [
     path: 'recherche', component: RechercheComponent
   },
   {
-    path: "", redirectTo: "accueil", pathMatch: "full"
-  }
+    path: 'nouveau-compte', component: EnregistrerComponent
+  },
+  { path: "", redirectTo: "accueil", pathMatch: "full" },
+  { path: '**', pathMatch: 'full',  component: PageIntrouvableComponent },
 
   // {
   //   path: "",

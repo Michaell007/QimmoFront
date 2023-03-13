@@ -3,6 +3,7 @@ import { RestApiService } from 'src/app/services/rest-api.service';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, Validators } from '@angular/forms';
 import { Options, LabelType } from "@angular-slider/ngx-slider";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
@@ -93,9 +94,9 @@ export class AccueilComponent implements OnInit {
     }
   };
 
-  constructor(private svcApi: RestApiService, private fb: FormBuilder) { }
+  constructor(private svcApi: RestApiService, private fb: FormBuilder, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     // pi get annonce
     this.svcApi.getLatestAnnonces().subscribe(
       (response: any) => {
@@ -113,14 +114,12 @@ export class AccueilComponent implements OnInit {
   }
 
   submitForm() {
-
-    
+    // set data search
     let adDatas = { 'price': this.price, 'surface': this.surface, 'douche': this.douche, 'chambre': this.chambre  }
     let datas = { ...this.formSearch.value, ...adDatas }
 
-    console.log(this.formSearch.value);
-    console.log(datas);
-
+    // goto reseach page
+    this.router.navigate(['/recherche'], { queryParams: datas });
   }
 
   doSomething() {

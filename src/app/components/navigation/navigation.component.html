@@ -14,8 +14,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse yamm" id="navigation">
             <div class="button navbar-right">
-                <button class="navbar-btn nav-button wow bounceInRight login" data-wow-delay="0.45s">Se connecter</button>
-                <button class="navbar-btn nav-button wow fadeInRight login" data-wow-delay="0.48s">S'enregistrer</button>
+                <button [routerLink]="['/']" class="navbar-btn nav-button wow bounceInRight login" data-wow-delay="0.45s">Se connecter</button>
+                <button [routerLink]="['/nouveau-compte']" class="navbar-btn nav-button wow fadeInRight login" data-wow-delay="0.48s"><i class="fa fa-bell"></i> Recevoir des alertes</button>
+                <button [routerLink]="['/nouveau-compte']" class="navbar-btn nav-button wow fadeInRight register" data-wow-delay="0.48s"><i class="fa fa-sticky-note-o"></i> Publier</button>
             </div>
             <ul class="main-nav nav navbar-nav navbar-right">
                 <li class="wow fadeInDown" data-wow-delay="0.2s"><a [routerLink]="['/']">Accueil </a></li>

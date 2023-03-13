@@ -46,4 +46,8 @@ export class RestApiService {
     return this.http.get(`${this.apiURL}annonces/all/${page}`);
   }
 
+  createSouscripteur(data: any) : Observable<any> {
+    return this.http.post(`${this.apiURL}souscripteur/create`, data);
+  }
+
 }

@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { RechercheComponent } from './views/recherche/recherche.component';
+import { PageIntrouvableComponent } from './views/page-introuvable/page-introuvable.component';
+import { EnregistrerComponent } from './views/enregistrer/enregistrer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { RechercheComponent } from './views/recherche/recherche.component';
     FooterComponent,
     IndexComponent,
     CardComponent,
-    RechercheComponent
+    RechercheComponent,
+    PageIntrouvableComponent,
+    EnregistrerComponent
   ],
   imports: [
     BrowserModule,
