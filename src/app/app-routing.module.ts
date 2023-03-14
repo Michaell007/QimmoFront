@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, ExtraOptions  } from '@angular/router';
 import { IndexComponent } from './layouts/index/index.component';
+import { AuthGuard } from './shared/auth.guard';
 import { AccountComponent } from './views/account/account.component';
 import { AccueilComponent } from './views/accueil/accueil.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
@@ -31,7 +32,9 @@ const routes: Routes = [
     path: 'account', component: AccountComponent
   },
   {
-    path: "dashboard", component: DashboardComponent,
+    path: "dashboard", 
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'profil', component: ProfilComponent },
       { path: "", redirectTo: "profil", pathMatch: "full" },
