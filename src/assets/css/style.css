@@ -2599,7 +2599,7 @@ padding-bottom: 15px;
 } 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     color: #FFF;
-    background-color: #FFC500;
+    background-color: #679df6;
 }
 .nav-pills > li > a {
     border-radius: 0px;

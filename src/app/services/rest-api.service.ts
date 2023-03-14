@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
+import { AuthnService } from './authn.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class RestApiService {
     });
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private svcAuth: AuthnService) { }
 
   getLatestAnnonces() : Observable<any> {
     return this.http.get(`${this.apiURL}annonce/latest`);
@@ -52,6 +53,18 @@ export class RestApiService {
 
   createUser(data: any) : Observable<any> {
     return this.http.post(`${this.apiURL}user/create`, data);
+  }
+
+  updateUser(data: any) : Observable<any> {
+    let token = this.svcAuth.getLocalStorage("token");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }),
+    };
+
+    return this.http.put(`${this.apiURL}api/user/edit`, data, httpOptions);
   }
 
 }

@@ -20,6 +20,7 @@ import { EnregistrerComponent } from './views/enregistrer/enregistrer.component'
 import { AccountComponent } from './views/account/account.component';
 import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { ProfilComponent } from './views/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
     EnregistrerComponent,
     AccountComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

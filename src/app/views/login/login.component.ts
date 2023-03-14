@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
       // request login
       this.svcAuth.postLogin(this.formLogin.value).subscribe(
         (response: any) => {
-          this.svcAuth.setLocalStorage("current", JSON.stringify(response));
+          this.svcAuth.setLocalStorage("token", JSON.stringify(response.token));
+          this.svcAuth.setLocalStorage("current_data", JSON.stringify(response.data));
           this.isLoginError = false;
         },
         error => {
