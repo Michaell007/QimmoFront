@@ -130,15 +130,15 @@
                         <div *ngFor="let annonce of annonces" class="col-sm-6 col-md-4 p0">
                             <div class="box-two proerty-item">
                                 <div class="item-thumb">
-                                    <a [target]="!annonce.isForOwnerSite ? '_blank': '_self'" href="{{annonce.isForOwnerSite ? '/annonce/123': annonce.linkUrl }}">
-                                        <img class="img-annonce" src="{{annonce.isForOwnerSite ? 'assets/img/demo/property-1.png': (annonce.images[0].url == 'property.png') ? 'assets/img/demo/property.png' : annonce.images[0].url }}">
+                                    <a [target]="!annonce.isForOwnerSite ? '_blank': '_self'" href="{{annonce.isForOwnerSite ? '/details-annonce/{{annonce.id}}': annonce.linkUrl }}">
+                                        <img class="img-annonce" src="{{annonce.isForOwnerSite ?  '//' + apiURL+annonce.images[0].url  : (annonce.images[0].url == 'property.png') ? 'assets/img/demo/property.png' : annonce.images[0].url }}">
                                     </a>
                                     <span> <b style="color: brown;">{{ annonce.typeAnnonce.libelle }}</b> - {{ annonce.lieu != null ? annonce.lieu : ' - '  }}</span>
                                 </div>
                         
                                 <div class="item-entry overflow">
                                     <h5>
-                                        <a [target]="!annonce.isForOwnerSite ? '_blank': '_self'" href="{{annonce.isForOwnerSite ? '/annonce/123': annonce.linkUrl }}"> {{ annonce.title.length > 23 ? (annonce.title| slice:0:22) + '...' : annonce.title }} </a></h5>
+                                        <a [target]="!annonce.isForOwnerSite ? '_blank': '_self'" href="{{annonce.isForOwnerSite ? '/details-annonce/{{annonce.id}}': annonce.linkUrl }}"> {{ annonce.title.length > 23 ? (annonce.title| slice:0:22) + '...' : annonce.title }} </a></h5>
                                     <div class="dot-hr"></div>
                                     <span class="pull-left">
                                         <b>Surface :</b> {{ annonce.dimension != null ? annonce.dimension+'m' : '-'  }} 

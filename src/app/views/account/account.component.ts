@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ValidatorFn, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { RestApiService } from 'src/app/services/rest-api.service';
+import { AuthnService } from 'src/app/services/authn.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -12,14 +14,21 @@ export class AccountComponent implements OnInit {
   // notification empty
   isOk = -1;
 
-  constructor(private svcApi: RestApiService, private fb: FormBuilder) { }
+  constructor(private svcApi: RestApiService, private fb: FormBuilder, private svcAuth: AuthnService, private router: Router) { }
 
   ngOnInit(): void {
+
+    // is connected
+    let isConnected = this.svcAuth.getLocalStorage("token") != undefined;
+    if (isConnected) {
+      this.router.navigate(['login']);
+    }
 
     // Init form
     this.formAccount = this.fb.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
+      contact: ['', Validators.required],
       email: ['', [Validators.email, Validators.required] ],
       password: ['', Validators.required],
       repeatpwd: ['', Validators.required],

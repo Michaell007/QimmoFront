@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ValidatorFn, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthnService } from 'src/app/services/authn.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
   isLoginError = false;
 
-  constructor(private svcAuth: AuthnService, private fb: FormBuilder) { }
+  constructor(private svcAuth: AuthnService, private fb: FormBuilder, public router: Router) { }
 
   ngOnInit(): void {
 
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
         (response: any) => {
           this.svcAuth.setLocalStorage("token", JSON.stringify(response.token));
           this.svcAuth.setLocalStorage("current_data", JSON.stringify(response.data));
-          this.isLoginError = false;
+          this.router.navigate(['dashboard/profil']);
         },
         error => {
           this.isLoginError = true;

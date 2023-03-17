@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardComponent implements OnInit {
   @Input() annonce: any;
+  apiURL = 'localhost:8000/uploads/';
 
   constructor() { }
 

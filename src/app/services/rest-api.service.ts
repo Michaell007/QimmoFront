@@ -47,6 +47,10 @@ export class RestApiService {
     return this.http.get(`${this.apiURL}annonces/all/${page}`);
   }
 
+  getAnnonceById(annonceId: number) : Observable<any> {
+    return this.http.get(`${this.apiURL}annonce/${annonceId}`);
+  }
+
   createSouscripteur(data: any) : Observable<any> {
     return this.http.post(`${this.apiURL}souscripteur/create`, data);
   }
@@ -65,6 +69,18 @@ export class RestApiService {
     };
 
     return this.http.put(`${this.apiURL}api/user/edit`, data, httpOptions);
+  }
+
+  addAnnonce(data: any) : Observable<any> {
+    let token = this.svcAuth.getLocalStorage("token");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }),
+    };
+
+    return this.http.post(`${this.apiURL}annonce/create`, data);
   }
 
 }

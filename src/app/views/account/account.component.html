@@ -37,6 +37,8 @@
                             publier des annonces accessible à tous
                             <strong>Partenaires, clients, visiteurs ...</strong>
                         </p>
+                        <hr>
+                        <a class="pull-right" routerLink="/login">Je dispose déjà d'un compte <i class="fa fa-arrow-right"></i></a>
                     </div>
                     <!-- /.col-sm-4 -->
                 </div>
@@ -63,11 +65,20 @@
                                 </div> 
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="email">Email *</label>
                                 <input formControlName="email" type="email" class="form-control" id="email">
                                 <div *ngIf="formAccount.controls['email'].errors && (ngForm.submitted  || formAccount.touched)" class="text-danger">
+                                    Champs incorrect.
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="contact">Contact *</label>
+                                <input formControlName="contact" type="email" class="form-control" id="email">
+                                <div *ngIf="formAccount.controls['contact'].errors && (ngForm.submitted  || formAccount.touched)" class="text-danger">
                                     Champs incorrect.
                                 </div> 
                             </div>

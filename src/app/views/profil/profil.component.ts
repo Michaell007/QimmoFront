@@ -17,7 +17,9 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userInfo = this.svcAuth.getLocalStorage("current_data").data;
+    this.userInfo = this.svcAuth.getLocalStorage("current_data");
+    console.log( this.userInfo );
+
     // Init form
     this.formUpdate = this.fb.group({
       nom: [this.userInfo.nom, Validators.required],

@@ -21,6 +21,8 @@ import { AccountComponent } from './views/account/account.component';
 import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ProfilComponent } from './views/profil/profil.component';
+import { AddAnnonceComponent } from './views/add-annonce/add-annonce.component';
+import { DetailsAnnonceComponent } from './views/details-annonce/details-annonce.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ProfilComponent } from './views/profil/profil.component';
     AccountComponent,
     LoginComponent,
     DashboardComponent,
-    ProfilComponent
+    ProfilComponent,
+    AddAnnonceComponent,
+    DetailsAnnonceComponent
   ],
   imports: [
     BrowserModule,

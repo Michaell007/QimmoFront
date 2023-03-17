@@ -15,6 +15,7 @@ export class RechercheComponent implements OnInit {
   formSearch!: FormGroup;
   maxPages = 0;
   page = 1;
+  apiURL = 'localhost:8000/uploads/';
 
   constructor(private svcApi: RestApiService, private fb: FormBuilder, private route: ActivatedRoute) { }
 

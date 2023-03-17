@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthnService } from 'src/app/services/authn.service';
 
 @Component({
   selector: 'app-navigation',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
+  isConnected = false;
 
-  constructor() { }
+  constructor(private svcAuth: AuthnService) { }
 
   ngOnInit(): void {
+    this.isConnected = this.svcAuth.getLocalStorage("token") != undefined;
   }
 
 }
