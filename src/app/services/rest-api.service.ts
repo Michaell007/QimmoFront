@@ -36,7 +36,7 @@ export class RestApiService {
   constructor(private http: HttpClient, private svcAuth: AuthnService) { }
 
   getLatestAnnonces() : Observable<any> {
-    return this.http.get(`${this.apiURL}annonce/latest`);
+    return this.http.get(`${this.apiURL}annonce/all/latest`);
   }
 
   getSearchAnnonces(data: any, page = 1) : Observable<any> {
@@ -80,7 +80,7 @@ export class RestApiService {
       }),
     };
 
-    return this.http.post(`${this.apiURL}api/annonce/create`, data);
+    return this.http.post(`${this.apiURL}api/annonce/create`, data, httpOptions);
   }
 
 }
