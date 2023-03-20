@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthnService {
 
-  apiURL = 'http://localhost:8000/';
+  apiURL = environment.apiURL;
 
   // Http Options
   httpOptions = {
