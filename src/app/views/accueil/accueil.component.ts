@@ -96,7 +96,7 @@ export class AccueilComponent implements OnInit {
 
   constructor(private svcApi: RestApiService, private fb: FormBuilder, private router: Router) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     // api get annonce
     this.svcApi.getLatestAnnonces().subscribe(
       (response: any) => {
